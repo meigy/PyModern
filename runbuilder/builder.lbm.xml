@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xml>
+  <var>
+    <author>doggod</author>
+    <path>
+      <src>
+        <root>E:\szkingdom.com\Fis_copy\src\trunk</root>
+        <lbmdll>
+          <path>@@path.src.root\lbmdll</path>
+          <common>@@path.src.lbmdll\lbm_comm</common>
+        </lbmdll>
+      </src>
+      <vs2010vc>
+        <root>C:\Program Files (x86)\Microsoft Visual Studio 10.0</root>
+        <builder>@@path.vs2010vc.root\Common7\IDE\devenv.com</builder>
+        <vc>@@path.vs2010vc.root\VC</vc>
+        <include>@@path.src.lbmdll\GeneralBus;@@path.src.lbmdll.common</include>
+      </vs2010vc>
+      <temp type="python">os.environ['temp']</temp>
+    </path>
+  </var>
+  <builders>
+    <builder name="vs2010vc">
+      <!--step order="1" type="cmd">cmd /k ""@@path.vs2010vc.vc\vcvarsall.bat"" x86</step-->
+      <step order="2" type="cmd">"@@path.vs2010vc.builder" "@@projectfile" "Release" /Rebuild</step>
+    </builder>
+    <builder name="vs2010vc_debug">
+      <!--step order="1" type="cmd">cmd /k ""@@path.vs2010vc.vc\vcvarsall.bat"" x86</step-->
+      <step order="2" type="cmd">"@@path.vs2010vc.builder" "@@projectfile" "Debug" /Rebuild</step>
+    </builder>
+  </builders>
+
+  <projectgroups>
+    <projectgroup name="jzjy lbm debug">
+      <project projectname="lbm_acct" describe="帐户模块(lbm_Acct.dll)" projectdir="@@path.src.lbmdll.path\lbm_acct" projectfile=".*lbm_acct\.vcxproj" projecttarget="lbm_acct.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_bond" describe="债券模块(lbm_bond.dll)" projectdir="@@path.src.lbmdll.path\lbm_bond" projectfile="lbm_bond.vcxproj" projecttarget="lbm_bond.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_sys" describe="系统模块(lbm_sys.dll)" projectdir="@@path.src.lbmdll.path\lbm_sys" projectfile="lbm_sys.vcxproj" projecttarget="lbm_sys.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_cs" describe="礼品模块(lbm_cs.dll)" projectdir="@@path.src.lbmdll.path\lbm_cs" projectfile="lbm_cs.vcxproj" projecttarget="lbm_cs.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_finger" describe="指纹模块(lbm_finger.dll)" projectdir="@@path.src.lbmdll.path\lbm_finger" projectfile="lbm_finger.vcxproj" projecttarget="lbm_finger.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_secu" describe="中登开户(lbm_secu.dll)" projectdir="@@path.src.lbmdll.path\lbm_secu" projectfile="lbm_secu.vcxproj" projecttarget="lbm_secu.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_query" describe="查询模块(lbm_query.dll)" projectdir="@@path.src.lbmdll.path\lbm_query" projectfile="lbm_query.vcxproj" projecttarget="lbm_query.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_agt" describe="代理人模块(lbm_agt.dll)" projectdir="@@path.src.lbmdll.path\lbm_agt" projectfile="lbm_agt.vcxproj" projecttarget="lbm_agt.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_bktf" describe="转帐模块(lbm_bktf.dll)" projectdir="@@path.src.lbmdll.path\lbm_bktf" projectfile="lbm_bktf.vcxproj" projecttarget="lbm_bktf.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_bktrd" describe="转帐模块(lbm_bktrd.dll)" projectdir="@@path.src.lbmdll.path\lbm_bktrd" projectfile="lbm_bktrd.vcxproj" projecttarget="lbm_bktrd.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_brk" describe="经纪人模块(lbm_brk.dll)" projectdir="@@path.src.lbmdll.path\lbm_brk" projectfile="lbm_brk.vcxproj" projecttarget="lbm_brk.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_oper" describe="柜员模块(lbm_oper.dll)" projectdir="@@path.src.lbmdll.path\lbm_oper" projectfile="lbm_oper.vcxproj" projecttarget="lbm_oper.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_currentchk" describe="复核模块(lbm_currentchk.dll)" projectdir="@@path.src.lbmdll.path\lbm_currentchk" projectfile="lbm_currentchk.vcxproj" projecttarget="lbm_currentchk.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_fund" describe="资金模块(lbm_fund.dll)" projectdir="@@path.src.lbmdll.path\lbm_fund" projectfile="lbm_fund.vcxproj" projecttarget="lbm_fund.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_init" describe="初始化(lbm_init.dll)" projectdir="@@path.src.lbmdll.path\lbm_init" projectfile="lbm_init.vcxproj" projecttarget="lbm_init.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_of" describe="基金模块(lbm_of.dll)" projectdir="@@path.src.lbmdll.path\lbm_of" projectfile="lbm_of.vcxproj" projecttarget="lbm_of.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_per" describe="恒生外围模块(lbm_per.dll)" projectdir="@@path.src.lbmdll.path\lbm_per" projectfile="lbm_per.vcxproj" projecttarget="lbm_per.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_periphery" describe="标准外围接口(lbm_periphery.dll)" projectdir="@@path.src.lbmdll.path\lbm_periphery" projectfile="lbm_periphery.vcxproj" projecttarget="lbm_periphery.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_prostat" describe="统计模块(lbm_prostat.dll)" projectdir="@@path.src.lbmdll.path\lbm_prostat" projectfile="lbm_prostat.vcxproj" projecttarget="lbm_prostat.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_jzper" describe="帐户接口(lbm_jzper.dll)" projectdir="@@path.src.lbmdll.path\lbm_jzper" projectfile="lbm_jzper.vcxproj" projecttarget="lbm_jzper.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_jz30per" describe="KB32接口模块(lbm_jz30per.dll)" projectdir="@@path.src.lbmdll.path\lbm_jz30per" projectfile="lbm_jz30per.vcxproj" projecttarget="lbm_jz30per.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_rprt" describe="报盘模块(lbm_rprt.dll)" projectdir="@@path.src.lbmdll.path\lbm_rprt" projectfile="lbm_rprt.vcxproj" projecttarget="lbm_rprt.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_sett" describe="清算模块(lbm_sett.dll)" projectdir="@@path.src.lbmdll.path\lbm_sett" projectfile="lbm_sett.vcxproj" projecttarget="lbm_sett.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_sys" describe="系统参数模块(lbm_sys.dll)" projectdir="@@path.src.lbmdll.path\lbm_sys" projectfile="lbm_sys.vcxproj" projecttarget="lbm_sys.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_rpt" describe="统计模块(lbm_rpt.dll)" projectdir="@@path.src.lbmdll.path\lbm_rpt" projectfile="lbm_rpt.vcxproj" projecttarget="lbm_rpt.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_fast" describe="行情处理模块(lbm_fast.dll)" projectdir="@@path.src.lbmdll.path\lbm_fast" projectfile="lbm_fast.vcxproj" projecttarget="lbm_fast.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_stk" describe="证券模块(lbm_stk.dll)" projectdir="@@path.src.lbmdll.path\lbm_stk" projectfile="lbm_stk.vcxproj" projecttarget="lbm_stk.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_trandbf" describe="数据接口模块(lbm_trandbf.dll)" projectdir="@@path.src.lbmdll.path\lbm_trandbf" projectfile="lbm_trandbf.vcxproj" projecttarget="lbm_trandbf.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_jgdz" describe="交割对帐模块(lbm_jgdz.dll)" projectdir="@@path.src.lbmdll.path\lbm_jgdz" projectfile="lbm_jgdz.vcxproj" projecttarget="lbm_jgdz.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_gen" describe="输入代码转换模块(lbm_gen.dll)" projectdir="@@path.src.lbmdll.path\lbm_gen" projectfile="lbm_gen.vcxproj" projecttarget="lbm_gen.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_stat" describe="统计模块(lbm_stat.dll)" projectdir="@@path.src.lbmdll.path\lbm_stat" projectfile="lbm_stat.vcxproj" projecttarget="lbm_stat.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_fisacct" describe="融资融券帐户(lbm_fisacct.dll)" projectdir="@@path.src.lbmdll.path\lbm_fisacct" projectfile="lbm_fisacct.vcxproj" projecttarget="lbm_fisacct.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_fisconfig" describe="融资融券参数(lbm_fisconfig.dll)" projectdir="@@path.src.lbmdll.path\lbm_fisconfig" projectfile="lbm_fisconfig.vcxproj" projecttarget="lbm_fisconfig.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_fismsg" describe="融资融券消息管理(lbm_fismsg.dll)" projectdir="@@path.src.lbmdll.path\lbm_fismsg" projectfile="lbm_fismsg.vcxproj" projecttarget="lbm_fismsg.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_fispc" describe="融资融券平仓管理(lbm_fispc.dll)" projectdir="@@path.src.lbmdll.path\lbm_fispc" projectfile="lbm_fispc.vcxproj" projecttarget="lbm_fispc.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_fisquery" describe="融资融券查询(lbm_fisquery.dll)" projectdir="@@path.src.lbmdll.path\lbm_fisquery" projectfile="lbm_fisquery.vcxproj" projecttarget="lbm_fisquery.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_fisreport" describe="融资融券报表(lbm_fisreport.dll)" projectdir="@@path.src.lbmdll.path\lbm_fisreport" projectfile="lbm_fisreport.vcxproj" projecttarget="lbm_fisreport.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_fisrisk" describe="融资融券风控(lbm_fisrisk.dll)" projectdir="@@path.src.lbmdll.path\lbm_fisrisk" projectfile="lbm_fisrisk.vcxproj" projecttarget="lbm_fisrisk.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_public" describe="通用dll(lbm_public.dll)" projectdir="@@path.src.lbmdll.path\lbm_public" projectfile="lbm_public.vcxproj" projecttarget="lbm_public.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_position" describe="融资融券头寸(lbm_position.dll)" projectdir="@@path.src.lbmdll.path\lbm_position" projectfile="lbm_position.vcxproj" projecttarget="lbm_position.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_service" describe="RSPI接口(lbm_service.dll)" projectdir="@@path.src.lbmdll.path\lbm_service" projectfile="lbm_service.vcxproj" projecttarget="lbm_service.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_vip" describe="订单VIP(lbm_vip.dll)" projectdir="@@path.src.lbmdll.path\lbm_vip" projectfile="lbm_vip.vcxproj" projecttarget="lbm_vip.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_fundmonitor" describe="资金监控(lbm_fundmonitor.dll)" projectdir="@@path.src.lbmdll.path\lbm_fundmonitor" projectfile="lbm_fundmonitor.vcxproj" projecttarget="lbm_fundmonitor.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_fundtrans" describe="对接OTC(lbm_fundtrans.dll)" projectdir="@@path.src.lbmdll.path\plugins\lbm_fundtrans" projectfile="lbm_fundtrans.vcxproj" projecttarget="lbm_fundtrans.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_zjxt_itf" describe="资金系统对接(lbm_zjxt_itf.dll)" projectdir="@@path.src.lbmdll.path\plugins\lbm_zjxt_itf" projectfile="lbm_zjxt_itf.vcxproj" projecttarget="lbm_zjxt_itf.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_fast" describe="网关对接业务(lbm_fast.dll)" projectdir="@@path.src.lbmdll.path\lbm_fast" projectfile="lbm_fast.vcxproj" projecttarget="lbm_fast.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_debtchg" describe="资产证券化(lbm_debtchg.dll)" projectdir="@@path.src.lbmdll.path\lbm_debtchg" projectfile="lbm_debtchg.vcxproj" projecttarget="lbm_debtchg.dll" builder="vs2010vc_debug"></project>
+      <project projectname="lbm_subscribe" describe="帐户对接模块(lbm_subscribe.dll)" projectdir="@@path.src.lbmdll.path\lbm_subscribe" projectfile="lbm_subscribe.vcxproj" projecttarget="lbm_subscribe.dll" builder="vs2010vc_debug"></project>
+    </projectgroup>
+    <projectgroup name="jzjy lbm release">
+      <project projectname="lbm_acct" describe="帐户模块(lbm_Acct.dll)" projectdir="@@path.src.lbmdll.path\lbm_acct" projectfile="lbm_acct.vcxproj" projecttarget="lbm_acct.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_bond" describe="债券模块(lbm_bond.dll)" projectdir="@@path.src.lbmdll.path\lbm_bond" projectfile="lbm_bond.vcxproj" projecttarget="lbm_bond.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_sys" describe="系统模块(lbm_sys.dll)" projectdir="@@path.src.lbmdll.path\lbm_sys" projectfile="lbm_sys.vcxproj" projecttarget="lbm_sys.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_cs" describe="礼品模块(lbm_cs.dll)" projectdir="@@path.src.lbmdll.path\lbm_cs" projectfile="lbm_cs.vcxproj" projecttarget="lbm_cs.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_finger" describe="指纹模块(lbm_finger.dll)" projectdir="@@path.src.lbmdll.path\lbm_finger" projectfile="lbm_finger.vcxproj" projecttarget="lbm_finger.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_secu" describe="中登开户(lbm_secu.dll)" projectdir="@@path.src.lbmdll.path\lbm_secu" projectfile="lbm_secu.vcxproj" projecttarget="lbm_secu.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_query" describe="查询模块(lbm_query.dll)" projectdir="@@path.src.lbmdll.path\lbm_query" projectfile="lbm_query.vcxproj" projecttarget="lbm_query.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_agt" describe="代理人模块(lbm_agt.dll)" projectdir="@@path.src.lbmdll.path\lbm_agt" projectfile="lbm_agt.vcxproj" projecttarget="lbm_agt.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_bktf" describe="转帐模块(lbm_bktf.dll)" projectdir="@@path.src.lbmdll.path\lbm_bktf" projectfile="lbm_bktf.vcxproj" projecttarget="lbm_bktf.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_bktrd" describe="转帐模块(lbm_bktrd.dll)" projectdir="@@path.src.lbmdll.path\lbm_bktrd" projectfile="lbm_bktrd.vcxproj" projecttarget="lbm_bktrd.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_brk" describe="经纪人模块(lbm_brk.dll)" projectdir="@@path.src.lbmdll.path\lbm_brk" projectfile="lbm_brk.vcxproj" projecttarget="lbm_brk.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_oper" describe="柜员模块(lbm_oper.dll)" projectdir="@@path.src.lbmdll.path\lbm_oper" projectfile="lbm_oper.vcxproj" projecttarget="lbm_oper.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_currentchk" describe="复核模块(lbm_currentchk.dll)" projectdir="@@path.src.lbmdll.path\lbm_currentchk" projectfile="lbm_currentchk.vcxproj" projecttarget="lbm_currentchk.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_fund" describe="资金模块(lbm_fund.dll)" projectdir="@@path.src.lbmdll.path\lbm_fund" projectfile="lbm_fund.vcxproj" projecttarget="lbm_fund.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_init" describe="初始化(lbm_init.dll)" projectdir="@@path.src.lbmdll.path\lbm_init" projectfile="lbm_init.vcxproj" projecttarget="lbm_init.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_of" describe="基金模块(lbm_of.dll)" projectdir="@@path.src.lbmdll.path\lbm_of" projectfile="lbm_of.vcxproj" projecttarget="lbm_of.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_per" describe="恒生外围模块(lbm_per.dll)" projectdir="@@path.src.lbmdll.path\lbm_per" projectfile="lbm_per.vcxproj" projecttarget="lbm_per.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_periphery" describe="标准外围接口(lbm_periphery.dll)" projectdir="@@path.src.lbmdll.path\lbm_periphery" projectfile="lbm_periphery.vcxproj" projecttarget="lbm_periphery.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_prostat" describe="统计模块(lbm_prostat.dll)" projectdir="@@path.src.lbmdll.path\lbm_prostat" projectfile="lbm_prostat.vcxproj" projecttarget="lbm_prostat.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_jzper" describe="帐户接口(lbm_jzper.dll)" projectdir="@@path.src.lbmdll.path\lbm_jzper" projectfile="lbm_jzper.vcxproj" projecttarget="lbm_jzper.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_jz30per" describe="KB32接口模块(lbm_jz30per.dll)" projectdir="@@path.src.lbmdll.path\lbm_jz30per" projectfile="lbm_jz30per.vcxproj" projecttarget="lbm_jz30per.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_rprt" describe="报盘模块(lbm_rprt.dll)" projectdir="@@path.src.lbmdll.path\lbm_rprt" projectfile="lbm_rprt.vcxproj" projecttarget="lbm_rprt.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_sett" describe="清算模块(lbm_sett.dll)" projectdir="@@path.src.lbmdll.path\lbm_sett" projectfile="lbm_sett.vcxproj" projecttarget="lbm_sett.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_sys" describe="系统参数模块(lbm_sys.dll)" projectdir="@@path.src.lbmdll.path\lbm_sys" projectfile="lbm_sys.vcxproj" projecttarget="lbm_sys.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_rpt" describe="统计模块(lbm_rpt.dll)" projectdir="@@path.src.lbmdll.path\lbm_rpt" projectfile="lbm_rpt.vcxproj" projecttarget="lbm_rpt.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_fast" describe="行情处理模块(lbm_fast.dll)" projectdir="@@path.src.lbmdll.path\lbm_fast" projectfile="lbm_fast.vcxproj" projecttarget="lbm_fast.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_stk" describe="证券模块(lbm_stk.dll)" projectdir="@@path.src.lbmdll.path\lbm_stk" projectfile="lbm_stk.vcxproj" projecttarget="lbm_stk.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_trandbf" describe="数据接口模块(lbm_trandbf.dll)" projectdir="@@path.src.lbmdll.path\lbm_trandbf" projectfile="lbm_trandbf.vcxproj" projecttarget="lbm_trandbf.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_jgdz" describe="交割对帐模块(lbm_jgdz.dll)" projectdir="@@path.src.lbmdll.path\lbm_jgdz" projectfile="lbm_jgdz.vcxproj" projecttarget="lbm_jgdz.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_gen" describe="输入代码转换模块(lbm_gen.dll)" projectdir="@@path.src.lbmdll.path\lbm_gen" projectfile="lbm_gen.vcxproj" projecttarget="lbm_gen.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_stat" describe="统计模块(lbm_stat.dll)" projectdir="@@path.src.lbmdll.path\lbm_stat" projectfile="lbm_stat.vcxproj" projecttarget="lbm_stat.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_fisacct" describe="融资融券帐户(lbm_fisacct.dll)" projectdir="@@path.src.lbmdll.path\lbm_fisacct" projectfile="lbm_fisacct.vcxproj" projecttarget="lbm_fisacct.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_fisconfig" describe="融资融券参数(lbm_fisconfig.dll)" projectdir="@@path.src.lbmdll.path\lbm_fisconfig" projectfile="lbm_fisconfig.vcxproj" projecttarget="lbm_fisconfig.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_fismsg" describe="融资融券消息管理(lbm_fismsg.dll)" projectdir="@@path.src.lbmdll.path\lbm_fismsg" projectfile="lbm_fismsg.vcxproj" projecttarget="lbm_fismsg.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_fispc" describe="融资融券平仓管理(lbm_fispc.dll)" projectdir="@@path.src.lbmdll.path\lbm_fispc" projectfile="lbm_fispc.vcxproj" projecttarget="lbm_fispc.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_fisquery" describe="融资融券查询(lbm_fisquery.dll)" projectdir="@@path.src.lbmdll.path\lbm_fisquery" projectfile="lbm_fisquery.vcxproj" projecttarget="lbm_fisquery.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_fisreport" describe="融资融券报表(lbm_fisreport.dll)" projectdir="@@path.src.lbmdll.path\lbm_fisreport" projectfile="lbm_fisreport.vcxproj" projecttarget="lbm_fisreport.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_fisrisk" describe="融资融券风控(lbm_fisrisk.dll)" projectdir="@@path.src.lbmdll.path\lbm_fisrisk" projectfile="lbm_fisrisk.vcxproj" projecttarget="lbm_fisrisk.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_public" describe="通用dll(lbm_public.dll)" projectdir="@@path.src.lbmdll.path\lbm_public" projectfile="lbm_public.vcxproj" projecttarget="lbm_public.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_position" describe="融资融券头寸(lbm_position.dll)" projectdir="@@path.src.lbmdll.path\lbm_position" projectfile="lbm_position.vcxproj" projecttarget="lbm_position.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_service" describe="RSPI接口(lbm_service.dll)" projectdir="@@path.src.lbmdll.path\lbm_service" projectfile="lbm_service.vcxproj" projecttarget="lbm_service.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_vip" describe="订单VIP(lbm_vip.dll)" projectdir="@@path.src.lbmdll.path\lbm_vip" projectfile="lbm_vip.vcxproj" projecttarget="lbm_vip.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_fundmonitor" describe="资金监控(lbm_fundmonitor.dll)" projectdir="@@path.src.lbmdll.path\lbm_fundmonitor" projectfile="lbm_fundmonitor.vcxproj" projecttarget="lbm_fundmonitor.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_fundtrans" describe="对接OTC(lbm_fundtrans.dll)" projectdir="@@path.src.lbmdll.path\plugins\lbm_fundtrans" projectfile="lbm_fundtrans.vcxproj" projecttarget="lbm_fundtrans.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_zjxt_itf" describe="资金系统对接(lbm_zjxt_itf.dll)" projectdir="@@path.src.lbmdll.path\plugins\lbm_zjxt_itf" projectfile="lbm_zjxt_itf.vcxproj" projecttarget="lbm_zjxt_itf.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_fast" describe="网关对接业务(lbm_fast.dll)" projectdir="@@path.src.lbmdll.path\lbm_fast" projectfile="lbm_fast.vcxproj" projecttarget="lbm_fast.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_debtchg" describe="资产证券化(lbm_debtchg.dll)" projectdir="@@path.src.lbmdll.path\lbm_debtchg" projectfile="lbm_debtchg.vcxproj" projecttarget="lbm_debtchg.dll" builder="vs2010vc"></project>
+      <project projectname="lbm_subscribe" describe="帐户对接模块(lbm_subscribe.dll)" projectdir="@@path.src.lbmdll.path\lbm_subscribe" projectfile="lbm_subscribe.vcxproj" projecttarget="lbm_subscribe.dll" builder="vs2010vc"></project>
+    </projectgroup>
+  </projectgroups>
+</xml>

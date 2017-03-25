@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xml>
+  <var>
+    <author>doggod</author>
+    <path>
+      <src>
+        <root>E:\szkingdom.com\Fis_copy\src\trunk</root>
+        <client>
+          <path>@@path.src.root\Client</path>
+          <components>@@path.src.client.path\KingdomPackage</components>
+          <dll>@@path.src.client.path\ClientDll</dll>
+          <compiler>@@path.src.client.path\compiler</compiler>
+          <include>@@path.src.client.compiler\inc;@@path.src.client.compiler\inc3</include>
+          <common>@@path.src.client.path\common</common>
+          <unitinc>@@path.src.client.compiler\lib;@@path.src.client.compiler\lib3;@@path.src.client.path\lib;@@path.src.client.common</unitinc>
+          <packages>vcl;vclx;rtl;inet;xmlrtl;vclie;VclSmp;dclOfficeXP;CSPACK;CSDock;ReportPack;CSEncrypt;CSExprs;ChartPack;CSImgDev;</packages>
+        </client>
+        <lbmdll>
+          <common>@@path.src.root.lbm\lbm_comm</common>
+          <lbm>@@path.src.root\lbmdll</lbm>
+        </lbmdll>
+      </src>
+      <delphi7>
+        <root>C:\Program Files (x86)\Borland\Delphi7</root>
+        <dcc>@@path.delphi7.root\Bin\dcc32.exe</dcc>
+        <include>@@path.src.root\Client\Common</include>
+      </delphi7>
+      <clientoutput>@@path.src.client.path\bin</clientoutput>
+      <temp type="python">os.environ['temp']</temp>
+      <temp1 type="python">os.environ['temp']</temp1>
+      <temp2>@@path.temp@@path.temp1@@path.delphi7.dcc</temp2>
+    </path>
+  </var>
+  <builders>
+    <builder name="delphi7">
+      <step order="1" type="cmd" desc="create .rc">perl @@path.src.client.path\autobuild.pl @@projectdir @@projectdir\@@projectname_new.rc</step>
+      <step order="2" type="cmd" desc="remove dcu path">cmd.exe /x/d/c "rmdir @@projectdir\dcu /s/q"</step>
+      <step order="3" type="cmd" desc="create dcu path">cmd.exe /x/d/c "mkdir @@projectdir\dcu"</step>
+      <step order="4" type="cmd" desc="build .rc">"@@path.src.client.compiler\bin\brcc32"  "@@projectdir\@@projectname_new.rc" -fo"@@projectdir\@@projectname.res" -dKINGDOM</step>
+      <step order="5" type="cmd" desc="build .dpr">"@@path.src.client.compiler\bin\dcc32"   -dKINGDOM -b -q -w- -h- -e"@@path.clientoutput" -i@@path.src.client.include -u@@path.src.client.unitinc -lu@@path.src.client.packages @@projectfile</step>
+      <step order="6" type="cmd" desc="add version">"@@path.src.client.compiler\bin\BuildVerAdd" @@path.clientoutput\@@projecttarget</step>
+    </builder>
+  </builders>
+
+  <projectgroups>
+    <projectgroup name="RZRQ Client">
+      <project projectname="Cli_Acct" describe="帐户模块(Cli_Acct.dll)" projectdir="@@path.src.client.dll\Cli_Acct" projectfile=".*Cli_Acct\.dpr" projecttarget="Cli_Acct.dll" builder="delphi7"></project>
+      <project projectname="Cli_Secu" describe="统一帐户(Cli_Secu.dll)" projectdir="@@path.src.client.dll\Cli_Secu" projectfile="Cli_Secu.dpr" projecttarget="Cli_Secu.dll" builder="delphi7"></project>
+      <project projectname="Cli_Agt" describe="代理业务模块(Cli_Agt.dll)" projectdir="@@path.src.client.dll\Cli_Agt" projectfile="Cli_Agt.dpr" projecttarget="Cli_Agt.dll" builder="delphi7"></project>
+      <project projectname="Cli_Bktf" describe="银证转帐模块(Cli_Bktf.dll)" projectdir="@@path.src.client.dll\Cli_Bktf" projectfile="Cli_Bktf.dpr" projecttarget="Cli_Bktf.dll" builder="delphi7"></project>
+      <project projectname="Cli_Broker" describe="经纪人管理模块(Cli_Brk.dll)" projectdir="@@path.src.client.dll\Cli_Broker" projectfile="Cli_Broker.dpr" projecttarget="Cli_Broker.dll" builder="delphi7"></project>
+      <project projectname="Cli_Chk" describe="复核模块(Cli_Chk.dll)" projectdir="@@path.src.client.dll\Cli_Chk" projectfile="Cli_Chk.dpr" projecttarget="Cli_Chk.dll" builder="delphi7"></project>
+      <project projectname="Cli_cm" describe="客户经理模块(Cli_cm.dll)" projectdir="@@path.src.client.dll\Cli_cm" projectfile="Cli_cm.dpr" projecttarget="Cli_cm.dll" builder="delphi7"></project>
+      <project projectname="Cli_credit" describe="融资融券模块(Cli_Credit.dll)" projectdir="@@path.src.client.dll\Cli_credit" projectfile="Cli_credit.dpr" projecttarget="Cli_credit.dll" builder="delphi7"></project>
+      <project projectname="Cli_Deli" describe="交割对帐模块(Cli_Deli.dll)" projectdir="@@path.src.client.dll\Cli_Deli" projectfile="Cli_Deli.dpr" projecttarget="Cli_Deli.dll" builder="delphi7"></project>
+      <project projectname="Cli_Fund" describe="资金模块(Cli_Fund.dll)" projectdir="@@path.src.client.dll\Cli_Fund" projectfile="Cli_Fund.dpr" projecttarget="Cli_Fund.dll" builder="delphi7"></project>
+      <project projectname="Cli_Gen" describe="统计报表模块(Cli_Gen.dll)" projectdir="@@path.src.client.dll\Cli_Gen" projectfile="Cli_Gen.dpr" projecttarget="Cli_Gen.dll" builder="delphi7"></project>
+      <project projectname="Cli_Manrpt" describe="人工报盘模块(Cli_Manrpt.dll)" projectdir="@@path.src.client.dll\Cli_Manrpt" projectfile="Cli_Manrpt.dpr" projecttarget="Cli_Manrpt.dll" builder="delphi7"></project>
+      <project projectname="cli_of" describe="开放式基金模块(Cli_Of.dll)" projectdir="@@path.src.client.dll\cli_of" projectfile="cli_of.dpr" projecttarget="cli_of.dll" builder="delphi7"></project>
+      <project projectname="Cli_Oper" describe="柜员管理模块(Cli_Oper.dll)" projectdir="@@path.src.client.dll\Cli_Oper" projectfile="Cli_Oper.dpr" projecttarget="Cli_Oper.dll" builder="delphi7"></project>
+      <project projectname="Cli_Query" describe="客户及公司查询模块(Cli_Query.dll)" projectdir="@@path.src.client.dll\Cli_Query" projectfile="Cli_Query.dpr" projecttarget="Cli_Query.dll" builder="delphi7"></project>
+      <project projectname="Cli_Sett" describe="日终清算模块(Cli_Sett.dll)" projectdir="@@path.src.client.dll\Cli_Sett" projectfile="Cli_Sett.dpr" projecttarget="Cli_Sett.dll" builder="delphi7"></project>
+      <project projectname="Cli_Stk" describe="证券模块(Cli_stk.dll)" projectdir="@@path.src.client.dll\Cli_Stk" projectfile="Cli_Stk.dpr" projecttarget="Cli_Stk.dll" builder="delphi7"></project>
+      <project projectname="Cli_rmt" describe="特列模块(Cli_rmt.dll)" projectdir="@@path.src.client.dll\Cli_rmt" projectfile="Cli_rmt.dpr" projecttarget="Cli_rmt.dll" builder="delphi7"></project>
+      <project projectname="Cli_Sys" describe="系统参数模块(cli_sys.dll)" projectdir="@@path.src.client.dll\Cli_Sys" projectfile="Cli_Sys.dpr" projecttarget="Cli_Sys.dll" builder="delphi7"></project>
+      <project projectname="Cli_Img" describe="影像管理模块(cli_img.dll)" projectdir="@@path.src.client.dll\Cli_Img" projectfile="Cli_Img.dpr" projecttarget="Cli_Img.dll" builder="delphi7"></project>
+      <project projectname="Cli_hqof" describe="基金总部系统(Cli_hqof.dll)" projectdir="@@path.src.client.dll\Cli_hqof" projectfile="Cli_hqof.dpr" projecttarget="Cli_hqof.dll" builder="delphi7"></project>
+      <project projectname="Cli_Finger" describe="指纹认证(Cli_Finger.dll)" projectdir="@@path.src.client.dll\Cli_Finger" projectfile="Cli_Finger.dpr" projecttarget="Cli_Finger.dll" builder="delphi7"></project>
+      <project projectname="Cli_FisAcct" describe="融资融券帐户类(Cli_FisAcct.dll)" projectdir="@@path.src.client.dll\Cli_FisAcct" projectfile="Cli_FisAcct.dpr" projecttarget="Cli_FisAcct.dll" builder="delphi7"></project>
+      <project projectname="Cli_FisCfg" describe="融资融券参数类(Cli_FisCfg.dll)" projectdir="@@path.src.client.dll\Cli_FisCfg" projectfile="Cli_FisCfg.dpr" projecttarget="Cli_FisCfg.dll" builder="delphi7"></project>
+      <project projectname="Cli_FisMsg" describe="融资融券消息类(Cli_FisMsg.dll)" projectdir="@@path.src.client.dll\Cli_FisMsg" projectfile="Cli_FisMsg.dpr" projecttarget="Cli_FisMsg.dll" builder="delphi7"></project>
+      <project projectname="Cli_FisPc" describe="融资融券平仓类(Cli_FisPc.dll)" projectdir="@@path.src.client.dll\Cli_FisPc" projectfile="Cli_FisPc.dpr" projecttarget="Cli_FisPc.dll" builder="delphi7"></project>
+      <project projectname="Cli_FisQuery" describe="融资融券查询类(Cli_FisQuery.dll)" projectdir="@@path.src.client.dll\Cli_FisQuery" projectfile="Cli_FisQuery.dpr" projecttarget="Cli_FisQuery.dll" builder="delphi7"></project>
+      <project projectname="Cli_FisRpt" describe="融资融券报表类(Cli_FisRpt.dll)" projectdir="@@path.src.client.dll\Cli_FisRpt" projectfile="Cli_FisRpt.dpr" projecttarget="Cli_FisRpt.dll" builder="delphi7"></project>
+      <project projectname="Cli_FisRisk" describe="融资融券风控类(Cli_FisRisk.dll)" projectdir="@@path.src.client.dll\Cli_FisRisk" projectfile="Cli_FisRisk.dpr" projecttarget="Cli_FisRisk.dll" builder="delphi7"></project>
+      <project projectname="Cli_FisRpt" describe="融资融券查询类(Cli_FisRpt.dll)" projectdir="@@path.src.client.dll\Cli_FisRpt" projectfile="Cli_FisRpt.dpr" projecttarget="Cli_FisRpt.dll" builder="delphi7"></project>
+      <project projectname="Cli_FisStk" describe="融资融券交易类(Cli_FisStk.dll)" projectdir="@@path.src.client.dll\Cli_FisStk" projectfile="Cli_FisStk.dpr" projecttarget="Cli_FisStk.dll" builder="delphi7"></project>
+      <project projectname="Cli_Debtchg" describe="资产证券化(Cli_Debtchg.dll)" projectdir="@@path.src.client.dll\Cli_Debtchg" projectfile="Cli_Debtchg.dpr" projecttarget="Cli_Debtchg.dll" builder="delphi7"></project>
+      <project projectname="Cli_Position" describe="融资融券头寸(Cli_Position.dll)" projectdir="@@path.src.client.dll\Cli_Position" projectfile="Cli_Position.dpr" projecttarget="Cli_Position.dll" builder="delphi7"></project>
+      <project projectname="Cli_Vip" describe="订单VIP(Cli_Vip.dll)" projectdir="@@path.src.client.dll\Cli_Vip" projectfile="Cli_Vip.dpr" projecttarget="Cli_Vip.dll" builder="delphi7"></project>
+      <project projectname="Cli_rptbs" describe="报表报送模块(Cli_rptbs.dll)" projectdir="@@path.src.client.dll\Cli_rptbs" projectfile="Cli_rptbs.dpr" projecttarget="Cli_rptbs.dll" builder="delphi7"></project>
+    </projectgroup>
+    <projectgroup name="RZRQ exe">
+      <project projectname="ClientMain" describe="客户端主程序(SpbClient.exe)" projectdir="@@path.src.client.dll\ClientMain" projectfile="SpbClient.dpr" projecttarget="SpbClient.exe" builder="delphi7"></project>
+      <project projectname="CmSpbClient" describe="总部客户端主程序(CmSpbClient.exe)" projectdir="@@path.src.client.dll\ClientMain" projectfile="CmSpbClient.dpr" projecttarget="CmSpbClient.exe" builder="delphi7"></project>
+    </projectgroup>
+    <projectgroup name="RZRQ packages">
+      <project projectname="CSPack" describe="基本控件包(Package)" projectdir="@@path.src.client.components\Package" projectfile="CSPack.dpk" projecttarget="CSPack.bpl" builder="delphi7"></project>
+      <project projectname="CSDock" describe="窗体拖放包(Dock)" projectdir="@@path.src.client.components\Dock" projectfile="CSDock.dpk" projecttarget="CSDock.bpl" builder="delphi7"></project>
+      <project projectname="CSEncrypt" describe="加密解密包(Encryption)" projectdir="@@path.src.client.components\Encryption" projectfile="CSEncrypt.dpk" projecttarget="CSEncrypt.bpl" builder="delphi7"></project>
+      <project projectname="CSExprs" describe="表达式解析包(ExpressionParser)" projectdir="@@path.src.client.components\ExpressionParser" projectfile="CSExprs.dpk" projecttarget="CSExprs.bpl" builder="delphi7"></project>
+      <project projectname="ReportPack" describe="报表打印包(ReportPack)" projectdir="@@path.src.client.components\ReportPack" projectfile="ReportPack.dpk" projecttarget="ReportPack.bpl" builder="delphi7"></project>
+      <project projectname="ChartPack" describe="图表控件包(ChartPack)" projectdir="@@path.src.client.components\ChartPack" projectfile="ChartPack.dpk" projecttarget="ChartPack.bpl" builder="delphi7"></project>
+      <project projectname="CSImgdev" describe="影像控件包(CSImgdev)" projectdir="@@path.src.client.components\CSImgdev" projectfile="CSImgdev.dpk" projecttarget="CSImgdev.bpl" builder="delphi7"></project>
+    </projectgroup>
+  </projectgroups>
+</xml>
