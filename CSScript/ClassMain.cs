@@ -26,6 +26,9 @@ namespace CSharp.Script
             UNKOWNERROR = -1,
         }
 
+        public static List<string> ExtendRefs = new List<string>();
+        public static string BaseDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
         public static CompilerResults Compile(string csscript, string output, out int error, out string message)
         {
             error = (int)CSCRETURNCODE.UNKOWNERROR;
@@ -44,6 +47,7 @@ namespace CSharp.Script
             CompilerParameters objCompilerParameters = new CompilerParameters();
             objCompilerParameters.ReferencedAssemblies.Add("System.dll");
             objCompilerParameters.ReferencedAssemblies.Add("System.Core.dll");
+            /*
             objCompilerParameters.ReferencedAssemblies.Add("System.Data.dll");
             objCompilerParameters.ReferencedAssemblies.Add(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "PresentationCore.dll"));
             objCompilerParameters.ReferencedAssemblies.Add(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "PresentationFramework.dll"));
@@ -51,6 +55,8 @@ namespace CSharp.Script
             objCompilerParameters.ReferencedAssemblies.Add(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "WindowsBase.dll"));
             objCompilerParameters.ReferencedAssemblies.Add("System.Xml.dll");
             objCompilerParameters.ReferencedAssemblies.Add("System.Windows.Forms.dll");
+            */
+            foreach (var reflib in ExtendRefs) objCompilerParameters.ReferencedAssemblies.Add(reflib);
             objCompilerParameters.GenerateInMemory = string.IsNullOrEmpty(output);
             objCompilerParameters.OutputAssembly = output;
 
